@@ -1,0 +1,28 @@
+{
+  "name": "hrla12-mvp-chickfila-saturday",
+  "version": "1.0.0",
+  "description": "> Chick-fil-A Saturday",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ylemberg/hrla12-mvp-chickfila-saturday.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ylemberg/hrla12-mvp-chickfila-saturday/issues"
+  },
+  "homepage": "https://github.com/ylemberg/hrla12-mvp-chickfila-saturday#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.7",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  }
+}
