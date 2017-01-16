@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var Users = mongoose.model('users');
-var Orders = mongoose.model('orders');
+var Users = mongoose.model('User');
+var Orders = mongoose.model('Order');
 
 var users = {
   get: (req, res) => {
@@ -14,6 +14,20 @@ var users = {
           return;
         }
         res.status(200).send(allUsers);
+      });
+  },
+  post: (req, res) => {
+    console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
+    Users
+      .create({
+        name: req.body.user
+      }, (err, createdUser) => {
+        if(err) {
+          res.status(500).send(err);
+          return;
+        }
+        console.log('createdUser', createdUser);
+        res.status(201).send('User inserted into db');
       });
   }
 };

@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
-var orderSchema = mongoose.model('orders');
 
 var userSchema = new mongoose.Schema({
-  name: String
-  // orders: [orderSchema]
+  name: String,
+  order: {type: mongoose.Schema.Types.ObjectId, ref: 'orders'}
 });
 
-mongoose.model('users', userSchema);
+mongoose.model('User', userSchema);

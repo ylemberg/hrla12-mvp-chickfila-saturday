@@ -6,4 +6,4 @@ var orderSchema = new mongoose.Schema({
   Fries: Boolean
 });
 
-mongoose.model('orders', orderSchema);
+mongoose.model('Order', orderSchema);
