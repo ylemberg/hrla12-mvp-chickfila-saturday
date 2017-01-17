@@ -158,31 +158,31 @@ var utils = {
         schemaName: 'shakeCookiesMilk'
       },
       {
-        name: 'sauceChickFilA',
+        name: 'ChickFilA',
         schemaName: 'sauceChickFilA'
       },
       {
-        name: 'saucePoly',
+        name: 'Polynesian',
         schemaName: 'saucePoly'
       },
       {
-        name: 'sauceHoney',
+        name: 'Honey Mustard',
         schemaName: 'sauceHoney'
       },
       {
-        name: 'sauceGarlic',
+        name: 'Garlic & Herb Ranch',
         schemaName: 'sauceGarlic'
       },
       {
-        name: 'sauceZesty',
+        name: 'Zesty Buffalo',
         schemaName: 'sauceZesty'
       },
       {
-        name: 'sauceBarbq',
+        name: 'Barbeque',
         schemaName: 'sauceBarbq'
       },
       {
-        name: 'sauceSriracha',
+        name: 'Sriracha',
         schemaName: 'sauceSriracha'
       }
     ];

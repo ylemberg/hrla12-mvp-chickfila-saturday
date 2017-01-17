@@ -2,7 +2,6 @@
   <div class="well bs-component">
     <form class="form-horizontal">
       <fieldset>
-        <legend class="running-total">Total: ${{total}}</legend>
         <div class="form-group">
           <label ng-model="user" for="inputEmail" class="col-lg-2 control-label">Name</label>
           <div class="col-lg-10">
@@ -14,25 +13,20 @@
           <label for="select" class="food-item col-lg-2 control-label">{{entree.name}}</label>
           <div class="col-lg-10">
             <br>
-            <select class="form-control" id="select">
-              <option disabled selected value> -- select how many sandwiches -- </option>
-              <option>1: ${{entree.price}}</option>
-              <option>2: ${{(entree.price * 2).toPrecision(2)}}</option>
-              <option>3: ${{(entree.price * 3).toPrecision(2)}}</option>
+            <select ng-model="entreePrice" ng-change="addToTotal(entreePrice)" class="form-control" id="select" ng-options="price for price in entree.prices">
+              <option disabled selected value> -- select if you want a sandwich -- </option>
             </select>
           </div>
         </div>
         <legend class="form-header">Sodas</legend>
-        <div ng-repeat="soda in sodas" class="form-group">
+        <div ng-repeat="(idx, soda) in sodas track by $index" class="form-group">
           <label for="select" class="food-item col-lg-2 control-label">{{soda.name}}</label>
           <div class="col-lg-10">
             <br>
-            <select class="form-control" id="select">
-              <option disabled selected value> -- select size of soda -- </option>
-              <option>Small: ${{soda.small}}</option>
-              <option>Medium: ${{soda.medium}}</option>
-              <option>Large: ${{soda.large}}</option>
-            </select>
+            {{soda.prices}}
+          <select ng-change="addToTotal(sodaPrice)" ng-model="sodaPrice" class="form-control" id="select" ng-options="price for price in soda.prices">
+            <option disabled selected value> -- select size of soda (Small, Medium, Large) -- </option>
+          </select>
           </div>
         </div>
         <legend class="form-header">Milkshakes</legend>
@@ -40,13 +34,22 @@
           <label for="select" class="food-item col-lg-2 control-label">{{shake.name}}</label>
           <div class="col-lg-10">
             <br>
-            <select class="form-control" id="select">
-              <option disabled selected value> -- select size of milkshake -- </option>
-              <option>Small: ${{shake.small}}</option>
-              <option>Large: ${{shake.large}}</option>
+            <select ng-model="shakePrice" ng-change="addToTotal(shakePrice)" class="form-control" id="select" ng-options="price for price in shake.prices">
+              <option disabled selected value> -- select size of milkshake (Small, Large) -- </option>
             </select>
           </div>
         </div>
+        <legend class="form-header">Sauces</legend>
+        <div ng-repeat="sauce in sauces" class="form-group">
+          <label for="select" class="food-item col-lg-2 control-label">{{sauce.name}}</label>
+          <div class="col-lg-10">
+            <br>
+            <select class="form-control" id="select" ng-model="sauceCnt" ng-options="sauce for sauce in [1, 2, 3, 4, 5]">
+              <!--<option disabled selected value> -- select amount of sauces -- </option>-->
+            </select>
+          </div>
+        </div>
+        <legend class="running-total">Total: ${{total}}</legend>
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <button type="reset" class="btn btn-default">Cancel</button>

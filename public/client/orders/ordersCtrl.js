@@ -12,10 +12,15 @@ angular.module('chickfilApp')
       $scope.menu.forEach(function(item) {
         if(item.entree) {
           $scope.entrees.push(item);
+          item.prices = [item.price];
         } else if(item.schemaName.indexOf('drink') !== -1) {
           $scope.sodas.push(item);
+          item.prices = [item.small, item.medium, item.large];
         } else if(item.schemaName.indexOf('shake') != -1) {
           $scope.milkshakes.push(item);
+          item.prices = [item.small, item.large];
+        } else if(item.schemaName.indexOf('sauce') != -1) {
+          $scope.sauces.push(item);
         }
       });
 
@@ -23,11 +28,15 @@ angular.module('chickfilApp')
       console.log('err', err);
     });
 
+    $scope.addToTotal = function(drinkPrice) {
+      $scope.total += drinkPrice;
+      console.log('$scope.total' + $scope.total);
+    }
+
     $scope.submitOrder = function() {
       $http.post('/api/users', {user: $scope.user}).then(function(res) {
       }, function(err) {
         console.log('err', err);
-      })
-      console.log('submitOrder');
+      });
     };
 });
