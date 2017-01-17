@@ -14,10 +14,28 @@
         <td>{{user.name}}</td>
         <td>
           <div class="user-img-ctr">
-            <img class="user-img" ng-src="lib/images/profile/{{user.name.toLowerCase()}}.JPG" alt="">
+            <img ng-click="displayDetails(user.order)" class="user-img" ng-src="lib/images/profile/{{user.name.toLowerCase()}}.JPG" alt="">
           </div>
           </td>
         <td>${{user.total}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="users-order table table-striped table-hover" display="none">
+    <thead>
+      <tr class="success">
+        <th>Items Ordered</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in currOrder">
+        <td>{{item}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

@@ -9,13 +9,23 @@ angular.module('chickfilApp')
     });
 
     $scope.formatData = function(users) {
-      return users.map(function(user) {
-        delete user[user.order.__v];
-        delete user[user.order._id];
+      var newUsers = users.map(function(user) {
+        delete user.order.__v;
+        delete user.order._id;
         user.name = user.user;
         user.total = user.order.total;
         delete user.order.total;
         return user;
+      }).sort(function(userA, userB) {
+        return userA.name > userB.name;
       });
+      return newUsers;
+    };
+
+    $scope.displayDetails = function(order) {
+      $scope.currOrder = [];
+      for(var key in order) {
+        $scope.currOrder.push(key + ' : ' + order[key]);
+      }
     };
   });
