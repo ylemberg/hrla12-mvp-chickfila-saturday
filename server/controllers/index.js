@@ -29,7 +29,7 @@ var users = {
                 return;
               }
               usersToReturn.push({user: user.name, order: foundOrder});
-              if(idx === allUsers.length - 1) {
+              if(usersToReturn.length === allUsers.length) {
                 sendUsers(usersToReturn);
               }
             });
