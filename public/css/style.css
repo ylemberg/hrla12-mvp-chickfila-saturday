@@ -7,3 +7,23 @@
 #order-form {
   left: 25%;
 }
+
+#num-of-item {
+  height: 75px;
+}
+
+fieldset > .running-total {
+  left: 40%;
+  position: relative;
+}
+
+.food-item {
+  margin-top: 20px;
+}
+
+/*Nav*/
+
+.navbar-brand {
+  left: 44%;
+  position: absolute;
+}
