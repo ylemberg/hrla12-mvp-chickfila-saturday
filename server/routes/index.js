@@ -6,4 +6,6 @@ router.post('/users', controller.users.post);
 
 router.get('/orders', controller.orders.get);
 
+router.get('/fetchMenu', controller.menuItems.get);
+
 module.exports = router;

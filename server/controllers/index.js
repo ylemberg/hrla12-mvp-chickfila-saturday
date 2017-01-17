@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Users = mongoose.model('User');
 var Orders = mongoose.model('Order');
+var utils = require('../lib/utility');
 
 var users = {
   get: (req, res) => {
@@ -37,9 +38,17 @@ var orders = {
     console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
     res.send();
   }
+};
+
+var menuItems = {
+  get: (req, res) => {
+    console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
+    res.send(utils.getMenu());
+  }
 }
 
 module.exports = {
   users: users,
-  orders: orders
+  orders: orders,
+  menuItems: menuItems
 };

@@ -9,45 +9,42 @@
             <input type="text" class="form-control" id="inputEmail" placeholder="Name">
           </div>
         </div>
-        <div class="form-group">
-          <label for="select" class="food-item col-lg-2 control-label">Chicken Sandwich</label>
+        <legend class="form-header">Entrees</legend>
+        <div ng-repeat="entree in entrees" class="form-group">
+          <label for="select" class="food-item col-lg-2 control-label">{{entree.name}}</label>
           <div class="col-lg-10">
-            <!--<select class="form-control" id="select">
-              <option>Chicken Sandwich</option>
-              <option>Deluxe Sandwich</option>
-              <option>Spicy Sandwich</option>
-              <option>Spicy Deluxe Sandwich</option>
-              <option>Nuggets</option>
-              <option>Chick-n-Strips</option>
-              <option>Grilled Chicken Sandwich</option>
-              <option>Grilled Nuggets</option>
-              <option>Grilled Chicken Club Sandwich</option>
-              <option>Grilled Chicken Cool Wrap</option>
-              <option>Grilled Salad Sandwich</option>
-            </select>-->
             <br>
-            <select id="num-of-item" multiple="3" class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+            <select class="form-control" id="select">
+              <option disabled selected value> -- select how many sandwiches -- </option>
+              <option>1: ${{entree.price}}</option>
+              <option>2: ${{(entree.price * 2).toPrecision(2)}}</option>
+              <option>3: ${{(entree.price * 3).toPrecision(2)}}</option>
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Radios</label>
+        <legend class="form-header">Sodas</legend>
+        <div ng-repeat="soda in sodas" class="form-group">
+          <label for="select" class="food-item col-lg-2 control-label">{{soda.name}}</label>
           <div class="col-lg-10">
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                Yes I want this drink
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
-                Na, it sucks
-              </label>
-            </div>
+            <br>
+            <select class="form-control" id="select">
+              <option disabled selected value> -- select size of soda -- </option>
+              <option>Small: ${{soda.small}}</option>
+              <option>Medium: ${{soda.medium}}</option>
+              <option>Large: ${{soda.large}}</option>
+            </select>
+          </div>
+        </div>
+        <legend class="form-header">Milkshakes</legend>
+        <div ng-repeat="shake in milkshakes" class="form-group">
+          <label for="select" class="food-item col-lg-2 control-label">{{shake.name}}</label>
+          <div class="col-lg-10">
+            <br>
+            <select class="form-control" id="select">
+              <option disabled selected value> -- select size of milkshake -- </option>
+              <option>Small: ${{shake.small}}</option>
+              <option>Large: ${{shake.large}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group">

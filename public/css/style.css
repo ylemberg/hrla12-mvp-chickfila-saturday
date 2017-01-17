@@ -13,12 +13,17 @@
 }
 
 fieldset > .running-total {
-  left: 40%;
-  position: relative;
+  text-align: center;
 }
 
 .food-item {
   margin-top: 20px;
+}
+
+.form-header {
+  text-align: center;
+  font-size: 4em;
+  color: #0ce3ac
 }
 
 /*Nav*/
