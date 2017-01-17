@@ -26,6 +26,13 @@ fieldset > .running-total {
   color: #0ce3ac
 }
 
+.countdown {
+  text-align: center;
+  font-size: 2em;
+  color: #fff;
+  -webkit-text-stroke: 1px #375a7f;
+}
+
 /*Nav*/
 
 .navbar-brand {
