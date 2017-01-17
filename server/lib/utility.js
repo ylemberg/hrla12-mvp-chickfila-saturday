@@ -187,6 +187,36 @@ var utils = {
       }
     ];
     return menu;
+  },
+
+  getOrderObj: orderArr => {
+    var order = {};
+    orderArr.forEach(item => {
+      if(item.cost) {
+        if(item.item.schemaName.indexOf('sandwich') !== -1
+          || item.item.schemaName.indexOf('nuggets') !== -1
+          || item.item.schemaName.indexOf('Nuggets') !== -1) {
+          order[item.item.schemaName] = 1;
+        } else if(item.item.schemaName.indexOf('drink') !== -1){
+          if(item.cost === 1.35) {
+            order[item.item.schemaName] = 'Small ' + item.item.name;
+          } else if(item.cost === 1.59) {
+            order[item.item.schemaName] = 'Medium ' + item.item.name;
+          } else if(item.cost === 1.85) {
+            order[item.item.schemaName] = 'Large ' + item.item.name;
+          }
+        } else if(item.item.schemaName.indexOf('shake') !== -1) {
+          if(item.cost === 2.75) {
+            order[item.item.schemaName] = 'Small ' + item.item.name;
+          } else if(item.cost === 2.75) {
+            order[item.item.schemaName] = 'Large ' + item.item.name;
+          }
+        }
+      } else {
+        order[item.item.schemaName] = item.numOfSauces;
+      }
+    });
+    return order;
   }
 };
 

@@ -9,9 +9,9 @@
       </div>
       <fieldset>
         <div class="form-group">
-          <label ng-model="user" for="inputEmail" class="col-lg-2 control-label">Name</label>
+          <label for="inputEmail" class="col-lg-2 control-label">Name</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" id="inputEmail" placeholder="First Name">
+            <input ng-model="user" type="text" class="form-control" id="inputEmail" placeholder="First Name">
           </div>
         </div>
         <legend class="form-header">Entrees</legend>
@@ -46,10 +46,10 @@
         </div>
         <legend class="form-header">Sauces</legend>
         <div ng-repeat="sauce in sauces" class="form-group">
-          <label for="select" class="food-item col-lg-2 control-label">{{sauce[0].user.name}}</label>
+          <label for="select" class="food-item col-lg-2 control-label">{{sauce[0].item.name}}</label>
           <div class="col-lg-10">
             <br>
-            <select class="form-control" id="select" ng-model="sauceCnt" ng-options="sc.numOfSauces for sc in sauce">
+            <select class="form-control" id="select" ng-model="sauceCnt" ng-change="addToOrder(sauceCnt)" ng-options="sc.numOfSauces for sc in sauce">
               <option disabled selected value> -- select amount of sauces -- </option>
             </select>
           </div>

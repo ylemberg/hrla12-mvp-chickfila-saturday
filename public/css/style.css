@@ -35,7 +35,12 @@ fieldset > .running-total {
 
 /*Nav*/
 
-.navbar-brand {
+.nav-logo {
+  left: 47%;
+  position: absolute;
+  width: 125px;
+}
+/*.navbar-brand {
   left: 44%;
   position: absolute;
-}
+}*/

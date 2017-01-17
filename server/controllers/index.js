@@ -6,6 +6,10 @@ var utils = require('../lib/utility');
 var users = {
   get: (req, res) => {
     console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
+    var sendUsers = usersToReturn => {
+      res.status(200).send(usersToReturn);
+    };
+
     Users
       .find()
       .exec((err, allUsers) => {
@@ -14,22 +18,50 @@ var users = {
           res.status(500).send(err);
           return;
         }
-        res.status(200).send(allUsers);
+
+        var usersToReturn = [];
+        allUsers.forEach((user, idx) => {
+          Orders
+            .findOne({_id: user.order})
+            .exec((err, foundOrder) => {
+              if(err) {
+                res.status(500).send(err);
+                return;
+              }
+              usersToReturn.push({user: user.name, order: foundOrder});
+              if(idx === allUsers.length - 1) {
+                sendUsers(usersToReturn);
+              }
+            });
+        });
       });
   },
   post: (req, res) => {
     console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
-    Users
-      .create({
-        name: req.body.user
-      }, (err, createdUser) => {
-        if(err) {
-          res.status(500).send(err);
-          return;
+
+    var orderObj = utils.getOrderObj(req.body.userOrder);
+    orderObj.total = req.body.total;
+
+    Orders
+      .create(orderObj, (err, createdOrder) => {
+          if(err) {
+            res.status(500).send();
+            return;
+          }
+
+          Users
+            .create({
+              name: req.body.username,
+              order: createdOrder
+            }, (err, createdUser) => {
+              if(err) {
+                res.status(500).send(err);
+                return;
+              }
+              res.status(201).send('User inserted into db');
+            });
         }
-        console.log('createdUser', createdUser);
-        res.status(201).send('User inserted into db');
-      });
+      );
   }
 };
 

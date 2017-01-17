@@ -14,5 +14,9 @@ angular.module('chickfilApp', ['ui.router'])
         },
         url: '/',
         controller: 'ordersCtrl'
+      }).state('users', {
+        url: '/users',
+        templateUrl: 'client/users/usersView.html',
+        controller: 'usersCtrl'
       });
 });

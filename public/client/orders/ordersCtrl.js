@@ -1,5 +1,5 @@
 angular.module('chickfilApp')
-  .controller('ordersCtrl', function($scope, $http, ordersFactory) {
+  .controller('ordersCtrl', function($scope, $http, ordersFactory, $state) {
     $scope.total = 0;
     $scope.menu = [];
     $scope.entrees = [];
@@ -16,20 +16,25 @@ angular.module('chickfilApp')
     ordersFactory.getMenu().then(function(res) {
       $scope.menu = res.data;
       $scope.menu.forEach(function(item) {
+        var tempItem = {};
+        for(var key in item) {
+          tempItem[key] = item[key];
+        }
+
         if(item.entree) {
           $scope.entrees.push(item);
-          item.prices = [{cost: item.price, user: item}];
+          item.prices = [{cost: item.price, item: tempItem}];
         } else if(item.schemaName.indexOf('drink') !== -1) {
           $scope.sodas.push(item);
-          item.prices = [{cost: item.small, user: item},
-                          {cost: item.medium, user: item},
-                          {cost: item.large, user: item}];
+          item.prices = [{cost: item.small, item: tempItem},
+                          {cost: item.medium, item: tempItem},
+                          {cost: item.large, item: tempItem}];
         } else if(item.schemaName.indexOf('shake') != -1) {
           $scope.milkshakes.push(item);
-          item.prices = [{cost: item.small, user: item}, {cost: item.large, user: item}];
+          item.prices = [{cost: item.small, item: tempItem}, {cost: item.large, item: tempItem}];
         } else if(item.schemaName.indexOf('sauce') != -1) {
-          $scope.sauces.push([{numOfSauces: 1, user: item}, {numOfSauces: 2, user: item}, {numOfSauces: 3, user: item}, 
-                              {numOfSauces: 4, user: item}, {numOfSauces: 5, user: item}]);
+          $scope.sauces.push([{numOfSauces: 1, item: tempItem}, {numOfSauces: 2, item: tempItem}, {numOfSauces: 3, item: tempItem},
+                              {numOfSauces: 4, item: tempItem}, {numOfSauces: 5, item: tempItem}]);
         }
       });
 
@@ -37,15 +42,20 @@ angular.module('chickfilApp')
       console.log('err', err);
     });
 
-    $scope.addToTotal = function(drinkPrice) {
-      $scope.total = parseFloat(($scope.total + drinkPrice.cost).toPrecision(3));
-      $scope.userOrder.push(drinkPrice);
-    }
+    $scope.addToTotal = function(item) {
+      $scope.total = parseFloat(($scope.total + item.cost).toPrecision(3));
+      $scope.addToOrder(item);
+    };
+
+    $scope.addToOrder = function(item) {
+      $scope.userOrder.push(item);
+    };
 
     $scope.submitOrder = function() {
-      var user = {user: $scope.user, userOrder: $scope.userOrder}
-      $http.post('/api/users', {user: $scope.user}).then(function(res) {
+      var user = {username: $scope.user, userOrder: $scope.userOrder, total: $scope.total};
+      $http.post('/api/users', user, {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}).then(function(res) {
         console.log('Post to /api/users successful');
+        $state.go('users');
       }, function(err) {
         console.log('err', err);
       });

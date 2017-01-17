@@ -13,9 +13,6 @@ var orderSchema = new mongoose.Schema({
   nuggets12: Number,
   grilledNuggets8: Number,
   grilledNuggets12: Number,
-  pickles: Boolean,
-  lettuce: Boolean,
-  tomatoes: Boolean,
   drinkCoke: String,
   drinkDietCoke: String,
   drinkDrPepper: String,
@@ -30,7 +27,8 @@ var orderSchema = new mongoose.Schema({
   sauceGarlic: Number,
   sauceZesty: Number,
   sauceBarbq: Number,
-  sauceSriracha: Number
+  sauceSriracha: Number,
+  total: Number
 });
 
 mongoose.model('Order', orderSchema);
