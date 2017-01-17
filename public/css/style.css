@@ -6,6 +6,9 @@
 
 #order-form {
   left: 25%;
+  height: 575px;
+  overflow: scroll;
+  border-radius: 10px;
 }
 
 #num-of-item {
@@ -23,7 +26,8 @@ fieldset > .running-total {
 .form-header {
   text-align: center;
   font-size: 4em;
-  color: #0ce3ac
+  color: #0ce3ac;
+  border-bottom: 1px solid;
 }
 
 .countdown {
@@ -31,6 +35,8 @@ fieldset > .running-total {
   font-size: 2em;
   color: #fff;
   -webkit-text-stroke: 1px #375a7f;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
 /*Nav*/
@@ -40,7 +46,27 @@ fieldset > .running-total {
   position: absolute;
   width: 125px;
 }
-/*.navbar-brand {
-  left: 44%;
-  position: absolute;
-}*/
+
+
+/*Users view*/
+
+.users-view {
+  background-color: #375a7f;
+}
+
+.user-img {
+  border-radius: 50px;
+  width: 125px;
+  cursor: pointer;
+}
+
+.user-img:hover {
+  -ms-transform:scale(1.2);
+  -webkit-transform:scale(1.2);
+  transform:scale(1.2);
+}
+
+.user-img-ctr {
+  left: 110px;
+  position: relative;
+}
