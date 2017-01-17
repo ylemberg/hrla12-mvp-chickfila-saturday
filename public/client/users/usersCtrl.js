@@ -1,6 +1,7 @@
 angular.module('chickfilApp')
   .controller('usersCtrl', function($scope, $http) {
     $scope.users = [];
+    $scope.displayOrder = false;
 
     $http.get('/api/users').then(function(res) {
       $scope.users = $scope.formatData(res.data);
@@ -27,5 +28,10 @@ angular.module('chickfilApp')
       for(var key in order) {
         $scope.currOrder.push(key + ' : ' + order[key]);
       }
+      $scope.displayOrder = true;
     };
+
+    $scope.showUsers = function() {
+      $scope.displayOrder = false;
+    }
   });

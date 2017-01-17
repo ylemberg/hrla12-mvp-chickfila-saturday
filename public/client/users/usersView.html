@@ -1,5 +1,5 @@
-<div class="users-view bs-component">
-  <table class="table table-striped table-hover ">
+<div ng-hide="displayOrder" class="users-view bs-component">
+  <table class="table table-striped table-hover">
     <thead>
       <tr class="success">
         <th>#</th>
@@ -16,18 +16,20 @@
           <div class="user-img-ctr">
             <img ng-click="displayDetails(user.order)" class="user-img" ng-src="lib/images/profile/{{user.name.toLowerCase()}}.JPG" alt="">
           </div>
-          </td>
+        </td>
         <td>${{user.total}}</td>
       </tr>
     </tbody>
   </table>
-  <table class="users-order table table-striped table-hover" display="none">
+</div>
+<div ng-show="displayOrder" class="users-view bs-component">
+  <table class="users-chickfila-order table table-striped table-hover">
     <thead>
       <tr class="success">
         <th>Items Ordered</th>
         <th></th>
         <th></th>
-        <th></th>
+        <th><a ng-click="showUsers()" class="btn btn-default">Back to users</a></th>
       </tr>
     </thead>
     <tbody>
@@ -39,5 +41,4 @@
       </tr>
     </tbody>
   </table>
-  <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
 </div>
