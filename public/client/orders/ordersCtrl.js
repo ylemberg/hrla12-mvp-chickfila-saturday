@@ -29,8 +29,7 @@ angular.module('chickfilApp')
     });
 
     $scope.addToTotal = function(drinkPrice) {
-      $scope.total += drinkPrice;
-      console.log('$scope.total' + $scope.total);
+      $scope.total = parseFloat(($scope.total + drinkPrice).toPrecision(3));
     }
 
     $scope.submitOrder = function() {
