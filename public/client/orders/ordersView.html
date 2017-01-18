@@ -13,12 +13,12 @@
       <div>
         <img class="nav-logo" src="lib/images/Chick-fil-A_Logo.png" alt="">
       </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a ui-sref="users">All Orders</a></li>
-        </ul>
-      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="users">All Orders</a></li>
+      </ul>
     </div>
-  </nav>
+</div>
+</nav>
 </div>
 <div class="countdown">
   Orders due in: {{countdown}}
@@ -26,13 +26,13 @@
 <div id="order-form" class="col-lg-6">
   <div class="well bs-component">
     <form class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label for="inputEmail" class="col-lg-2 control-label">Name</label>
-          <div class="col-lg-10">
-            <input ng-model="user" type="text" class="form-control" id="inputEmail" placeholder="First Name">
-          </div>
+      <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+          <input ng-model="user" type="text" class="form-control" id="inputEmail" placeholder="First Name">
         </div>
+      </div>
+      <fieldset>
         <legend class="form-header">Entrees</legend>
         <div ng-repeat="entree in entrees" class="form-group">
           <label for="select" class="food-item col-lg-2 control-label">{{entree.name}}</label>
@@ -43,12 +43,22 @@
             </select>
           </div>
         </div>
+        <legend class="form-header">Sides</legend>
+        <div ng-repeat="(idx, side) in sides track by $index" class="form-group">
+          <label for="select" class="food-item col-lg-2 control-label">{{side.name}}</label>
+          <div class="col-lg-10">
+            <br>
+            <select ng-change="addToTotal(sidePrice)" ng-model="sidePrice" class="form-control" id="select" ng-options="price.cost for price in side.prices">
+            <option disabled selected value> -- select size of side (Small, Medium, Large) -- </option>
+          </select>
+          </div>
+        </div>
         <legend class="form-header">Sodas</legend>
         <div ng-repeat="(idx, soda) in sodas track by $index" class="form-group">
           <label for="select" class="food-item col-lg-2 control-label">{{soda.name}}</label>
           <div class="col-lg-10">
             <br>
-          <select ng-change="addToTotal(sodaPrice)" ng-model="sodaPrice" class="form-control" id="select" ng-options="price.cost for price in soda.prices">
+            <select ng-change="addToTotal(sodaPrice)" ng-model="sodaPrice" class="form-control" id="select" ng-options="price.cost for price in soda.prices">
             <option disabled selected value> -- select size of soda (Small, Medium, Large) -- </option>
           </select>
           </div>

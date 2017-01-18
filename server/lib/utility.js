@@ -84,18 +84,14 @@ var utils = {
         entree: true,
         name: 'Chick-fil-A Nuggets (Grilled) 12pc',
         schemaName: 'grilledNuggets12'
-        },
-      {
-        name: 'pickles',
-        schemaName: 'pickes'
       },
       {
-        name: 'tomatoes', 
-        schemaName: 'tomatoes'
-      },
-      {
-        name: 'lettuce',
-        schemaName: 'lettuce'
+        small: 1.55,
+        medium: 1.65,
+        large: 1.85,
+        entree: false,
+        name: 'Waffle Fries',
+        schemaName: 'sideFries'
       },
       {
         small: 1.35,
@@ -208,7 +204,15 @@ var utils = {
         } else if(item.item.schemaName.indexOf('shake') !== -1) {
           if(item.cost === 2.75) {
             order[item.item.schemaName] = 'Small ' + item.item.name;
-          } else if(item.cost === 2.75) {
+          } else if(item.cost === 3.15) {
+            order[item.item.schemaName] = 'Large ' + item.item.name;
+          }
+        } else if(item.item.schemaName.indexOf('sideFries') !== -1) {
+          if(item.cost === 1.55) {
+            order[item.item.schemaName] = 'Small ' + item.item.name;
+          } else if(item.cost === 1.65) {
+            order[item.item.schemaName] = 'Medium ' + item.item.name;
+          } else if(item.cost === 1.85) {
             order[item.item.schemaName] = 'Large ' + item.item.name;
           }
         }

@@ -38,17 +38,14 @@ var users = {
   },
   post: (req, res) => {
     console.log('Serving requets for ' + req.method + ' where url is ' + req.url);
-
     var orderObj = utils.getOrderObj(req.body.userOrder);
     orderObj.total = req.body.total;
-
     Orders
       .create(orderObj, (err, createdOrder) => {
           if(err) {
             res.status(500).send();
             return;
           }
-
           Users
             .create({
               name: req.body.username,

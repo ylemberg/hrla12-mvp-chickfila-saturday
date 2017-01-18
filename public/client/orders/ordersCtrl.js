@@ -7,11 +7,12 @@ angular.module('chickfilApp')
     $scope.milkshakes = [];
     $scope.sauces = [];
     $scope.userOrder = [];
+    $scope.sides = [];
     $scope.countdown = ordersFactory.getTimeLeft();
-    setInterval(function() {
-      $scope.countdown = ordersFactory.getTimeLeft();
-      $scope.$digest();
-    }, 1000);
+    // setInterval(function() {
+    //   $scope.countdown = ordersFactory.getTimeLeft();
+    //   $scope.$digest();
+    // }, 1000);
 
     ordersFactory.getMenu().then(function(res) {
       $scope.menu = res.data;
@@ -35,6 +36,11 @@ angular.module('chickfilApp')
         } else if(item.schemaName.indexOf('sauce') != -1) {
           $scope.sauces.push([{numOfSauces: 1, item: tempItem}, {numOfSauces: 2, item: tempItem}, {numOfSauces: 3, item: tempItem},
                               {numOfSauces: 4, item: tempItem}, {numOfSauces: 5, item: tempItem}]);
+        } else if(item.schemaName.indexOf('side') !== -1) {
+          $scope.sides.push(item);
+          item.prices = [{cost: item.small, item: tempItem},
+                          {cost: item.medium, item: tempItem},
+                          {cost: item.large, item: tempItem}];
         }
       });
 
@@ -43,7 +49,7 @@ angular.module('chickfilApp')
     });
 
     $scope.addToTotal = function(item) {
-      $scope.total = parseFloat(($scope.total + item.cost).toPrecision(3));
+      $scope.total = parseFloat(($scope.total + item.cost).toPrecision(3)); //parsing float error
       $scope.addToOrder(item);
     };
 
