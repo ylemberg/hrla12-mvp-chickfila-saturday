@@ -9,10 +9,10 @@ angular.module('chickfilApp')
     $scope.userOrder = [];
     $scope.sides = [];
     $scope.countdown = ordersFactory.getTimeLeft();
-    // setInterval(function() {
-    //   $scope.countdown = ordersFactory.getTimeLeft();
-    //   $scope.$digest();
-    // }, 1000);
+    setInterval(function() {
+      $scope.countdown = ordersFactory.getTimeLeft();
+      $scope.$digest();
+    }, 1000);
 
     ordersFactory.getMenu().then(function(res) {
       $scope.menu = res.data;
